@@ -121,7 +121,6 @@ const DonorProfile = () => {
                 display: "flex",
                 alignItems: "center",
                 gap: "12px",
-                width: "100%",
                 padding: "13px 12px",
                 marginBottom: "7px",
                 border: "none",
