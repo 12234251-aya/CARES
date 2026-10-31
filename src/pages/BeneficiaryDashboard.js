@@ -35,6 +35,7 @@ const BeneficiaryDashboard = () => {
 
     return (
         <div
+            className="beneficiary-dashboard-page"
             style={{
                 minHeight: "calc(100vh - 180px)",
                 display: "flex",
@@ -43,7 +44,81 @@ const BeneficiaryDashboard = () => {
                 color: "#302044",
             }}
         >
+            <style>{`
+                @media (max-width: 720px) {
+                    .beneficiary-dashboard-page {
+                        flex-direction: column !important;
+                        width: 100%;
+                    }
+
+                    .beneficiary-dashboard-sidebar {
+                        width: 100% !important;
+                        min-width: 0 !important;
+                        border-right: none !important;
+                        border-bottom: 1px solid #eadcff;
+                        padding: 20px 16px !important;
+                    }
+
+                    .beneficiary-dashboard-sidebar > button {
+                        width: calc(50% - 5px) !important;
+                        display: inline-flex !important;
+                        vertical-align: top;
+                        margin-right: 5px;
+                        box-sizing: border-box;
+                        font-size: 13px !important;
+                        padding: 12px 9px !important;
+                    }
+
+                    .beneficiary-dashboard-sidebar > button:nth-of-type(even) {
+                        margin-right: 0;
+                    }
+
+                    .beneficiary-dashboard-main {
+                        width: 100%;
+                        padding: 25px 18px !important;
+                    }
+
+                    .beneficiary-dashboard-main h1 {
+                        font-size: 27px !important;
+                    }
+
+                    .beneficiary-dashboard-cards {
+                        grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+                        gap: 12px !important;
+                    }
+
+                    .beneficiary-dashboard-card {
+                        padding: 16px !important;
+                    }
+
+                    .beneficiary-dashboard-help {
+                        padding: 20px !important;
+                    }
+                }
+
+                @media (max-width: 420px) {
+                    .beneficiary-dashboard-sidebar > button {
+                        font-size: 12px !important;
+                        gap: 7px !important;
+                        padding: 11px 7px !important;
+                    }
+
+                    .beneficiary-dashboard-main {
+                        padding: 22px 13px !important;
+                    }
+
+                    .beneficiary-dashboard-cards {
+                        grid-template-columns: 1fr !important;
+                    }
+
+                    .beneficiary-dashboard-card {
+                        padding: 20px !important;
+                    }
+                }
+            `}</style>
+
             <aside
+                className="beneficiary-dashboard-sidebar"
                 style={{
                     width: "245px",
                     minWidth: "215px",
@@ -129,6 +204,7 @@ const BeneficiaryDashboard = () => {
                 })}
 
                 <div
+                    className="beneficiary-dashboard-support"
                     style={{
                         marginTop: "35px",
                         padding: "15px 12px",
@@ -148,6 +224,7 @@ const BeneficiaryDashboard = () => {
             </aside>
 
             <main
+                className="beneficiary-dashboard-main"
                 style={{
                     flex: 1,
                     minWidth: 0,
@@ -188,6 +265,7 @@ const BeneficiaryDashboard = () => {
                 </p>
 
                 <div
+                    className="beneficiary-dashboard-cards"
                     style={{
                         display: "grid",
                         gridTemplateColumns: "repeat(auto-fit, minmax(180px, 1fr))",
@@ -198,6 +276,7 @@ const BeneficiaryDashboard = () => {
                     {summaryCards.map((card) => (
                         <div
                             key={card.title}
+                            className="beneficiary-dashboard-card"
                             style={{
                                 background: "#ffffff",
                                 border: "1px solid #eadcff",
@@ -257,6 +336,7 @@ const BeneficiaryDashboard = () => {
                 </div>
 
                 <div
+                    className="beneficiary-dashboard-help"
                     style={{
                         padding: "24px",
                         borderRadius: "16px",

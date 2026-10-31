@@ -1,7 +1,13 @@
 
-import { NavLink } from "react-router-dom";
+import { useState } from "react";
+import { NavLink, useLocation } from "react-router-dom";
 
 const Header = () => {
+    const [menuOpen, setMenuOpen] = useState(false);
+    const location = useLocation();
+
+    const closeMenu = () => setMenuOpen(false);
+
     const linkStyle = ({ isActive }) => ({
         textDecoration: "none",
         color: isActive ? "#ffffff" : "#514263",
@@ -11,6 +17,7 @@ const Header = () => {
         fontWeight: isActive ? "600" : "500",
         fontSize: "15px",
         transition: "0.2s ease",
+        display: "block",
     });
 
     const actionStyle = ({ isActive }) => ({
@@ -21,93 +28,90 @@ const Header = () => {
         borderRadius: "10px",
         fontWeight: "600",
         whiteSpace: "nowrap",
+        display: "block",
+        textAlign: "center",
     });
 
     return (
-        <header style={styles.header}>
-            <NavLink to="/Home" style={styles.logo}>
-                <span style={styles.heart}>♥</span> CARES
+        <header className="cares-header">
+            <NavLink to="/Home" className="cares-logo" onClick={closeMenu}>
+                <span className="cares-heart">♥</span> CARES
             </NavLink>
 
-            <nav style={styles.nav}>
-                <NavLink
-                    to="/Home"
-                    end={false}
-                    style={({ isActive }) =>
-                        linkStyle({
-                            isActive:
-                                isActive ||
-                                window.location.pathname === "/",
-                        })
-                    }
-                >
-                    Home
-                </NavLink>
+            <button
+                type="button"
+                className="cares-menu-toggle"
+                aria-label={menuOpen ? "Close navigation menu" : "Open navigation menu"}
+                aria-expanded={menuOpen}
+                aria-controls="cares-navigation"
+                onClick={() => setMenuOpen(!menuOpen)}
+            >
+                {menuOpen ? "✕" : "☰"}
+            </button>
 
-                <NavLink to="/About" style={linkStyle}>
-                    About Us
-                </NavLink>
+            <div
+                id="cares-navigation"
+                className={`cares-navigation ${menuOpen ? "is-open" : ""}`}
+            >
+                <nav className="cares-nav-links">
+                    <NavLink
+                        to="/Home"
+                        style={({ isActive }) => ({
+                            ...linkStyle({
+                                isActive:
+                                    isActive || location.pathname === "/",
+                            }),
+                        })}
+                        onClick={closeMenu}
+                    >
+                        Home
+                    </NavLink>
 
-                <NavLink to="/Contact" style={linkStyle}>
-                    Contact Us
-                </NavLink>
-            </nav>
+                    <NavLink
+                        to="/About"
+                        style={linkStyle}
+                        onClick={closeMenu}
+                    >
+                        About Us
+                    </NavLink>
 
-            <div style={styles.actions}>
-                <NavLink to="/Login" style={actionStyle}>
-                    Log in
-                </NavLink>
+                    <NavLink
+                        to="/Contact"
+                        style={linkStyle}
+                        onClick={closeMenu}
+                    >
+                        Contact Us
+                    </NavLink>
 
-                <NavLink to="/SignUp" style={actionStyle}>
-                    Sign up
-                </NavLink>
+                    <NavLink
+                        to="/ChooseRole"
+                        style={linkStyle}
+                        onClick={closeMenu}
+                    >
+                        Choose Role
+                    </NavLink>
+                </nav>
+
+                <div className="cares-actions">
+                    <NavLink
+                        to="/Login"
+                        style={actionStyle}
+                        onClick={closeMenu}
+                    >
+                        Log in
+                    </NavLink>
+
+                    <NavLink
+                        to="/SignUp"
+                        style={actionStyle}
+                        onClick={closeMenu}
+                    >
+                        Sign up
+                    </NavLink>
+                </div>
             </div>
         </header>
     );
-};
-
-const styles = {
-    header: {
-        display: "flex",
-        alignItems: "center",
-        justifyContent: "space-between",
-        flexWrap: "wrap",
-        gap: "15px",
-        padding: "16px 5%",
-        background: "linear-gradient(135deg, #eee2ff, #e5d2ff)",
-        borderBottom: "1px solid #d8c1f3",
-        boxShadow: "0 3px 15px rgba(75, 45, 105, 0.08)",
-        position: "relative",
-        zIndex: 10,
-    },
-
-    logo: {
-        textDecoration: "none",
-        color: "#302044",
-        fontSize: "24px",
-        fontWeight: "800",
-        letterSpacing: "1px",
-        whiteSpace: "nowrap",
-    },
-
-    heart: {
-        color: "#8152b5",
-        marginRight: "5px",
-    },
-
-    nav: {
-        display: "flex",
-        alignItems: "center",
-        justifyContent: "center",
-        flexWrap: "wrap",
-        gap: "5px",
-    },
-
-    actions: {
-        display: "flex",
-        alignItems: "center",
-        gap: "10px",
-    },
 };
 
 export default Header;

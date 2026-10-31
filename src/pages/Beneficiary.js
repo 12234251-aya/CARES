@@ -62,6 +62,7 @@ const Beneficiary = () => {
 
     return (
         <div
+            className="beneficiary-request-page"
             style={{
                 minHeight: "calc(100vh - 180px)",
                 display: "flex",
@@ -70,7 +71,86 @@ const Beneficiary = () => {
                 color: "#302044",
             }}
         >
+            <style>{`
+                @media (max-width: 720px) {
+                    .beneficiary-request-page {
+                        flex-direction: column !important;
+                        width: 100%;
+                    }
+
+                    .beneficiary-request-sidebar {
+                        width: 100% !important;
+                        min-width: 0 !important;
+                        border-right: none !important;
+                        border-bottom: 1px solid #eadcff;
+                        padding: 20px 16px !important;
+                    }
+
+                    .beneficiary-request-sidebar > button {
+                        width: calc(50% - 5px) !important;
+                        display: inline-flex !important;
+                        vertical-align: top;
+                        margin-right: 5px;
+                        box-sizing: border-box;
+                        font-size: 13px !important;
+                        padding: 12px 9px !important;
+                    }
+
+                    .beneficiary-request-sidebar > button:nth-of-type(even) {
+                        margin-right: 0;
+                    }
+
+                    .beneficiary-request-main {
+                        width: 100%;
+                        padding: 25px 18px !important;
+                    }
+
+                    .beneficiary-request-form {
+                        padding: 20px !important;
+                    }
+
+                    .beneficiary-request-fields {
+                        grid-template-columns: 1fr !important;
+                        gap: 16px !important;
+                    }
+
+                    .beneficiary-request-confirmation {
+                        margin: 30px auto !important;
+                        padding: 30px 20px !important;
+                    }
+
+                    .beneficiary-request-confirmation h1 {
+                        font-size: 25px !important;
+                    }
+                }
+
+                @media (max-width: 420px) {
+                    .beneficiary-request-sidebar > button {
+                        font-size: 12px !important;
+                        gap: 7px !important;
+                        padding: 11px 7px !important;
+                    }
+
+                    .beneficiary-request-main {
+                        padding: 22px 13px !important;
+                    }
+
+                    .beneficiary-request-form {
+                        padding: 16px !important;
+                    }
+
+                    .beneficiary-request-form h2 {
+                        font-size: 18px !important;
+                    }
+
+                    .beneficiary-request-confirmation {
+                        padding: 25px 16px !important;
+                    }
+                }
+            `}</style>
+
             <aside
+                className="beneficiary-request-sidebar"
                 style={{
                     width: "245px",
                     minWidth: "215px",
@@ -155,6 +235,7 @@ const Beneficiary = () => {
                 })}
 
                 <div
+                    className="beneficiary-request-support"
                     style={{
                         marginTop: "35px",
                         padding: "15px 12px",
@@ -173,6 +254,7 @@ const Beneficiary = () => {
             </aside>
 
             <main
+                className="beneficiary-request-main"
                 style={{
                     flex: 1,
                     minWidth: 0,
@@ -217,6 +299,7 @@ const Beneficiary = () => {
 
                         <form
                             onSubmit={handleSubmit}
+                            className="beneficiary-request-form"
                             style={{
                                 background: "#ffffff",
                                 border: "1px solid #eadcff",
@@ -224,6 +307,7 @@ const Beneficiary = () => {
                                 padding: "clamp(20px, 3vw, 32px)",
                                 boxShadow: "0 10px 30px rgba(100, 60, 150, 0.07)",
                                 maxWidth: "900px",
+                                width: "100%",
                                 boxSizing: "border-box",
                             }}
                         >
@@ -232,6 +316,7 @@ const Beneficiary = () => {
                             </h2>
 
                             <div
+                                className="beneficiary-request-fields"
                                 style={{
                                     display: "grid",
                                     gridTemplateColumns: "repeat(auto-fit, minmax(220px, 1fr))",
@@ -306,6 +391,7 @@ const Beneficiary = () => {
                             </h2>
 
                             <div
+                                className="beneficiary-request-fields"
                                 style={{
                                     display: "grid",
                                     gridTemplateColumns: "repeat(auto-fit, minmax(220px, 1fr))",
@@ -396,6 +482,7 @@ const Beneficiary = () => {
                     </>
                 ) : (
                     <div
+                        className="beneficiary-request-confirmation"
                         style={{
                             maxWidth: "700px",
                             margin: "60px auto",
@@ -405,6 +492,7 @@ const Beneficiary = () => {
                             border: "1px solid #eadcff",
                             borderRadius: "22px",
                             boxShadow: "0 10px 30px rgba(100, 60, 150, 0.07)",
+                            boxSizing: "border-box",
                         }}
                     >
                         <div

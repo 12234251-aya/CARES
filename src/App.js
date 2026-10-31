@@ -26,12 +26,6 @@ import VolunteerDeliveries from "./pages/VolunteerDeliveries";
 import VolunteerServiceArea from "./pages/VolunteerServiceArea";
 import VolunteerProfile from "./pages/VolunteerProfile";
 
-function RequireAuth({ children }) {
-    const isLoggedIn = sessionStorage.getItem("caresLoggedIn") === "true";
-
-    return isLoggedIn ? children : <Navigate to="/Login" replace />;
-}
-
 function RequireRole({ role, children }) {
     const isLoggedIn = sessionStorage.getItem("caresLoggedIn") === "true";
     const selectedRole = sessionStorage.getItem("caresRole");
@@ -63,6 +57,7 @@ function App() {
                 <Route path="/About" element={<About />} />
                 <Route path="/Contact" element={<Contact />} />
 
+                {/* Login and Sign Up */}
                 <Route
                     path="/Login"
                     element={
@@ -81,15 +76,8 @@ function App() {
                     }
                 />
 
-                {/* Role selection requires login */}
-                <Route
-                    path="/ChooseRole"
-                    element={
-                        <RequireAuth>
-                            <ChooseRole />
-                        </RequireAuth>
-                    }
-                />
+                {/* Choose Role is now public */}
+                <Route path="/ChooseRole" element={<ChooseRole />} />
 
                 {/* Donor pages */}
                 <Route

@@ -137,9 +137,17 @@ const ChooseRole = () => {
 
                         <button
                             type="button"
-                            onClick={() => {const roleName = role.title;
-                                sessionStorage.setItem("caresRole", roleName);
-                                navigate(role.path);
+                            onClick={() => {
+                                sessionStorage.setItem("caresRole", role.title);
+
+                                const isLoggedIn =
+                                    sessionStorage.getItem("caresLoggedIn") === "true";
+
+                                if (isLoggedIn) {
+                                    navigate(role.path);
+                                } else {
+                                    navigate("/SignUp");
+                                }
                             }}
                             style={{
                                 width: "100%",

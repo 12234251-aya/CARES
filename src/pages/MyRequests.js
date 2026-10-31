@@ -47,6 +47,7 @@ const MyRequests = () => {
 
     return (
         <div
+            className="beneficiary-requests-page"
             style={{
                 minHeight: "calc(100vh - 180px)",
                 display: "flex",
@@ -55,7 +56,93 @@ const MyRequests = () => {
                 color: "#302044",
             }}
         >
+            <style>{`
+                @media (max-width: 720px) {
+                    .beneficiary-requests-page {
+                        flex-direction: column !important;
+                        width: 100%;
+                    }
+
+                    .beneficiary-requests-sidebar {
+                        width: 100% !important;
+                        min-width: 0 !important;
+                        border-right: none !important;
+                        border-bottom: 1px solid #eadcff;
+                        padding: 20px 16px !important;
+                    }
+
+                    .beneficiary-requests-sidebar > button {
+                        width: calc(50% - 5px) !important;
+                        display: inline-flex !important;
+                        vertical-align: top;
+                        margin-right: 5px;
+                        box-sizing: border-box;
+                        font-size: 13px !important;
+                        padding: 12px 9px !important;
+                    }
+
+                    .beneficiary-requests-sidebar > button:nth-of-type(even) {
+                        margin-right: 0;
+                    }
+
+                    .beneficiary-requests-main {
+                        width: 100%;
+                        padding: 25px 18px !important;
+                    }
+
+                    .beneficiary-requests-main h1 {
+                        font-size: 27px !important;
+                    }
+
+                    .beneficiary-requests-summary {
+                        grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+                        gap: 12px !important;
+                    }
+
+                    .beneficiary-requests-summary-card {
+                        padding: 16px !important;
+                    }
+
+                    .beneficiary-request-card {
+                        padding: 19px !important;
+                    }
+
+                    .beneficiary-request-details {
+                        grid-template-columns: 1fr !important;
+                    }
+                }
+
+                @media (max-width: 420px) {
+                    .beneficiary-requests-sidebar > button {
+                        font-size: 12px !important;
+                        gap: 7px !important;
+                        padding: 11px 7px !important;
+                    }
+
+                    .beneficiary-requests-main {
+                        padding: 22px 13px !important;
+                    }
+
+                    .beneficiary-requests-summary {
+                        grid-template-columns: 1fr !important;
+                    }
+
+                    .beneficiary-request-card {
+                        padding: 16px !important;
+                    }
+
+                    .beneficiary-request-card h2 {
+                        font-size: 19px !important;
+                    }
+
+                    .beneficiary-new-request-button {
+                        width: 100%;
+                    }
+                }
+            `}</style>
+
             <aside
+                className="beneficiary-requests-sidebar"
                 style={{
                     width: "245px",
                     minWidth: "215px",
@@ -134,6 +221,7 @@ const MyRequests = () => {
                 })}
 
                 <div
+                    className="beneficiary-requests-support"
                     style={{
                         marginTop: "35px",
                         padding: "15px 12px",
@@ -152,6 +240,7 @@ const MyRequests = () => {
             </aside>
 
             <main
+                className="beneficiary-requests-main"
                 style={{
                     flex: 1,
                     minWidth: 0,
@@ -180,6 +269,7 @@ const MyRequests = () => {
                 </p>
 
                 <div
+                    className="beneficiary-requests-summary"
                     style={{
                         display: "grid",
                         gridTemplateColumns: "repeat(auto-fit, minmax(170px, 1fr))",
@@ -194,6 +284,7 @@ const MyRequests = () => {
                     ].map((item) => (
                         <div
                             key={item.label}
+                            className="beneficiary-requests-summary-card"
                             style={{
                                 background: "#ffffff",
                                 border: "1px solid #eadcff",
@@ -214,6 +305,7 @@ const MyRequests = () => {
                 {requests.map((request) => (
                     <section
                         key={request.id}
+                        className="beneficiary-request-card"
                         style={{
                             background: "#ffffff",
                             border: "1px solid #eadcff",
@@ -253,6 +345,7 @@ const MyRequests = () => {
                         <hr style={{ border: 0, borderTop: "1px solid #eee4fa" }} />
 
                         <div
+                            className="beneficiary-request-details"
                             style={{
                                 display: "grid",
                                 gridTemplateColumns: "repeat(auto-fit, minmax(190px, 1fr))",
@@ -280,6 +373,7 @@ const MyRequests = () => {
                 ))}
 
                 <button
+                    className="beneficiary-new-request-button"
                     type="button"
                     onClick={() => navigate("/Beneficiary")}
                     style={{

@@ -9,22 +9,31 @@ const Login = () => {
 
     const navigate = useNavigate();
 
-    
-const handleSubmit = (event) => {
-    event.preventDefault();
+    const handleSubmit = (event) => {
+        event.preventDefault();
 
-    if (!email.trim() || !password) {
-        setMessage("Please enter your email and password.");
-        return;
-    }
+        if (!email.trim() || !password) {
+            setMessage("Please enter your email and password.");
+            return;
+        }
 
-    // Demo login only: real account verification needs the backend.
-    sessionStorage.setItem("caresLoggedIn", "true");
-    sessionStorage.removeItem("caresRole");
+        // Demo login only: real account verification needs the backend.
+        sessionStorage.setItem("caresLoggedIn", "true");
 
-    navigate("/ChooseRole");
-};
+        // Get the previously selected role
+        const selectedRole = sessionStorage.getItem("caresRole");
 
+        // Navigate according to the selected role
+        if (selectedRole === "Donor") {
+            navigate("/DonorDashboard");
+        } else if (selectedRole === "Beneficiary") {
+            navigate("/BeneficiaryDashboard");
+        } else if (selectedRole === "Volunteer") {
+            navigate("/VolunteerDashboard");
+        } else {
+            navigate("/ChooseRole");
+        }
+    };
 
     return (
         <div style={styles.page}>

@@ -66,6 +66,7 @@ const DonateItems = () => {
 
     return (
         <div
+            className="donor-page"
             style={{
                 minHeight: "calc(100vh - 180px)",
                 display: "flex",
@@ -76,6 +77,7 @@ const DonateItems = () => {
         >
             {/* Donor Sidebar */}
             <aside
+                className="donor-sidebar"
                 style={{
                     width: "245px",
                     minWidth: "215px",
@@ -101,6 +103,7 @@ const DonateItems = () => {
                     >
                         ♥ CARES
                     </h2>
+
                     <p
                         style={{
                             margin: 0,
@@ -126,38 +129,46 @@ const DonateItems = () => {
                     MENU
                 </p>
 
-                {sidebarLinks.map((item) => {
-                    const active = item.path === "/DonateItems";
+                <div className="donor-sidebar-links">
+                    {sidebarLinks.map((item) => {
+                        const active = item.path === "/DonateItems";
 
-                    return (
-                        <button
-                            key={item.label}
-                            type="button"
-                            onClick={() => navigate(item.path)}
-                            style={{
-                                width: "100%",
-                                display: "flex",
-                                alignItems: "center",
-                                gap: "12px",
-                                padding: "13px 12px",
-                                marginBottom: "7px",
-                                border: "none",
-                                borderRadius: "10px",
-                                textAlign: "left",
-                                fontSize: "14px",
-                                fontWeight: active ? "bold" : "normal",
-                                color: active ? "#ffffff" : "#655474",
-                                background: active ? "#8653bd" : "transparent",
-                                cursor: "pointer",
-                            }}
-                        >
-                            <span style={{ fontSize: "19px", width: "22px" }}>
-                                {item.icon}
-                            </span>
-                            {item.label}
-                        </button>
-                    );
-                })}
+                        return (
+                            <button
+                                key={item.label}
+                                type="button"
+                                onClick={() => navigate(item.path)}
+                                style={{
+                                    width: "100%",
+                                    display: "flex",
+                                    alignItems: "center",
+                                    gap: "12px",
+                                    padding: "13px 12px",
+                                    marginBottom: "7px",
+                                    border: "none",
+                                    borderRadius: "10px",
+                                    textAlign: "left",
+                                    fontSize: "14px",
+                                    fontWeight: active ? "bold" : "normal",
+                                    color: active ? "#ffffff" : "#655474",
+                                    background: active ? "#8653bd" : "transparent",
+                                    cursor: "pointer",
+                                }}
+                            >
+                                <span
+                                    style={{
+                                        fontSize: "19px",
+                                        width: "22px",
+                                    }}
+                                >
+                                    {item.icon}
+                                </span>
+
+                                {item.label}
+                            </button>
+                        );
+                    })}
+                </div>
 
                 <div
                     style={{
@@ -171,6 +182,7 @@ const DonateItems = () => {
                     }}
                 >
                     <strong>Help & Support</strong>
+
                     <p style={{ margin: "7px 0 0" }}>
                         Every donation can make a difference.
                     </p>
@@ -179,6 +191,7 @@ const DonateItems = () => {
 
             {/* Main Content */}
             <main
+                className="donor-main"
                 style={{
                     flex: 1,
                     minWidth: 0,
@@ -201,8 +214,6 @@ const DonateItems = () => {
                                 DONOR PORTAL / DONATE ITEMS
                             </p>
 
-                            
-                            
                             <h1
                                 style={{
                                     fontSize: "clamp(27px, 3vw, 38px)",
@@ -211,18 +222,20 @@ const DonateItems = () => {
                             >
                                 {step === 1 ? (
                                     <>
-                                        <span style={{ color: "#8653bd" }}>Donate Items</span>
+                                        <span style={{ color: "#8653bd" }}>
+                                            Donate Items
+                                        </span>
                                         <span> Details</span>
                                     </>
                                 ) : (
                                     <>
                                         <span>Delivery </span>
-                                        <span style={{ color: "#8653bd" }}>Preference</span>
+                                        <span style={{ color: "#8653bd" }}>
+                                            Preference
+                                        </span>
                                     </>
                                 )}
                             </h1>
-
-
 
                             <p
                                 style={{
@@ -238,6 +251,7 @@ const DonateItems = () => {
                         </div>
 
                         <form
+                            className="donor-form"
                             onSubmit={
                                 step === 1
                                     ? (event) => {
@@ -270,6 +284,7 @@ const DonateItems = () => {
                                     </h2>
 
                                     <div
+                                        className="donor-info-grid"
                                         style={{
                                             display: "grid",
                                             gridTemplateColumns:
@@ -281,6 +296,7 @@ const DonateItems = () => {
                                             <label style={labelStyle}>
                                                 Full Name
                                             </label>
+
                                             <input
                                                 name="donorName"
                                                 value={formData.donorName}
@@ -295,6 +311,7 @@ const DonateItems = () => {
                                             <label style={labelStyle}>
                                                 Phone Number
                                             </label>
+
                                             <input
                                                 name="phone"
                                                 type="tel"
@@ -310,6 +327,7 @@ const DonateItems = () => {
                                             <label style={labelStyle}>
                                                 Email Address
                                             </label>
+
                                             <input
                                                 name="email"
                                                 type="email"
@@ -325,6 +343,7 @@ const DonateItems = () => {
                                             <label style={labelStyle}>
                                                 Pickup Area / Location
                                             </label>
+
                                             <input
                                                 name="pickupLocation"
                                                 value={formData.pickupLocation}
@@ -355,6 +374,7 @@ const DonateItems = () => {
                                     </h2>
 
                                     <div
+                                        className="donor-item-grid"
                                         style={{
                                             display: "grid",
                                             gridTemplateColumns:
@@ -366,6 +386,7 @@ const DonateItems = () => {
                                             <label style={labelStyle}>
                                                 Item Category
                                             </label>
+
                                             <select
                                                 name="category"
                                                 value={formData.category}
@@ -398,6 +419,7 @@ const DonateItems = () => {
                                             <label style={labelStyle}>
                                                 Item Name / Type
                                             </label>
+
                                             <input
                                                 name="itemName"
                                                 value={formData.itemName}
@@ -412,6 +434,7 @@ const DonateItems = () => {
                                             <label style={labelStyle}>
                                                 Quantity
                                             </label>
+
                                             <input
                                                 name="quantity"
                                                 type="number"
@@ -431,6 +454,7 @@ const DonateItems = () => {
                                                 <label style={labelStyle}>
                                                     Expiry Date
                                                 </label>
+
                                                 <input
                                                     name="expiryDate"
                                                     type="date"
@@ -450,6 +474,7 @@ const DonateItems = () => {
                                         <label style={labelStyle}>
                                             Description / Condition
                                         </label>
+
                                         <textarea
                                             name="description"
                                             value={formData.description}
@@ -510,17 +535,19 @@ const DonateItems = () => {
                                             name="deliveryMethod"
                                             value="self"
                                             checked={
-                                                formData.deliveryMethod ===
-                                                "self"
+                                                formData.deliveryMethod === "self"
                                             }
                                             onChange={updateField}
                                             required
                                         />
+
                                         <span>
                                             <strong>
                                                 I will deliver it myself
                                             </strong>
+
                                             <br />
+
                                             <span
                                                 style={{
                                                     color: "#756582",
@@ -551,17 +578,19 @@ const DonateItems = () => {
                                             name="deliveryMethod"
                                             value="pickup"
                                             checked={
-                                                formData.deliveryMethod ===
-                                                "pickup"
+                                                formData.deliveryMethod === "pickup"
                                             }
                                             onChange={updateField}
                                             required
                                         />
+
                                         <span>
                                             <strong>
                                                 Please arrange a pickup
                                             </strong>
+
                                             <br />
+
                                             <span
                                                 style={{
                                                     color: "#756582",
@@ -580,6 +609,7 @@ const DonateItems = () => {
                                             <label style={labelStyle}>
                                                 Pickup Address
                                             </label>
+
                                             <input
                                                 name="pickupAddress"
                                                 value={formData.pickupAddress}

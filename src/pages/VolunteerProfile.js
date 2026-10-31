@@ -78,6 +78,7 @@ const VolunteerProfile = () => {
 
   return (
     <div
+      className="volunteer-profile-page"
       style={{
         minHeight: "100vh",
         display: "flex",
@@ -86,8 +87,78 @@ const VolunteerProfile = () => {
         color: "#30243d",
       }}
     >
-      
+      <style>{`
+        @media (max-width: 720px) {
+          .volunteer-profile-page {
+            flex-direction: column !important;
+          }
+
+          .volunteer-profile-sidebar {
+            width: 100% !important;
+            min-width: 0 !important;
+            border-right: none !important;
+            border-bottom: 1px solid #eadcff !important;
+            padding: 20px 16px !important;
+          }
+
+          .volunteer-profile-sidebar .sidebar-links {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 7px;
+          }
+
+          .volunteer-profile-sidebar .sidebar-link {
+            width: 100%;
+            margin-bottom: 0 !important;
+            box-sizing: border-box;
+            font-size: 13px !important;
+            padding: 11px 8px !important;
+            gap: 7px !important;
+          }
+
+          .volunteer-profile-sidebar .help-box {
+            margin-top: 20px !important;
+          }
+
+          .volunteer-profile-main {
+            width: 100%;
+            padding: 22px 16px !important;
+          }
+
+          .volunteer-profile-form {
+            padding: 20px !important;
+          }
+
+          .volunteer-profile-save {
+            width: 100%;
+          }
+        }
+
+        @media (max-width: 420px) {
+          .volunteer-profile-sidebar .sidebar-links {
+            grid-template-columns: 1fr;
+          }
+
+          .volunteer-profile-sidebar .sidebar-link {
+            font-size: 14px !important;
+          }
+
+          .volunteer-profile-main {
+            padding: 20px 12px !important;
+          }
+
+          .volunteer-profile-main h1 {
+            font-size: 25px !important;
+          }
+
+          .volunteer-profile-form {
+            padding: 16px !important;
+          }
+        }
+      `}</style>
+
       <aside
+        className="volunteer-profile-sidebar"
         style={{
           width: "245px",
           minWidth: "215px",
@@ -138,41 +209,45 @@ const VolunteerProfile = () => {
           MENU
         </p>
 
-        {sidebarLinks.map((link) => {
-          const active = location.pathname === link.path;
+        <div className="sidebar-links">
+          {sidebarLinks.map((link) => {
+            const active = location.pathname === link.path;
 
-          return (
-            <button
-              key={link.path}
-              type="button"
-              onClick={() => navigate(link.path)}
-              style={{
-                width: "100%",
-                display: "flex",
-                alignItems: "center",
-                gap: "12px",
-                padding: "13px 12px",
-                marginBottom: "7px",
-                border: "none",
-                borderRadius: "10px",
-                textAlign: "left",
-                fontSize: "14px",
-                fontWeight: active ? "bold" : "normal",
-                color: active ? "#ffffff" : "#655474",
-                background: active ? "#8653bd" : "transparent",
-                cursor: "pointer",
-              }}
-            >
-              <span style={{ fontSize: "19px", width: "22px" }}>
-                {link.icon}
-              </span>
+            return (
+              <button
+                key={link.path}
+                type="button"
+                className="sidebar-link"
+                onClick={() => navigate(link.path)}
+                style={{
+                  width: "100%",
+                  display: "flex",
+                  alignItems: "center",
+                  gap: "12px",
+                  padding: "13px 12px",
+                  marginBottom: "7px",
+                  border: "none",
+                  borderRadius: "10px",
+                  textAlign: "left",
+                  fontSize: "14px",
+                  fontWeight: active ? "bold" : "normal",
+                  color: active ? "#ffffff" : "#655474",
+                  background: active ? "#8653bd" : "transparent",
+                  cursor: "pointer",
+                }}
+              >
+                <span style={{ fontSize: "19px", width: "22px" }}>
+                  {link.icon}
+                </span>
 
-              {link.label}
-            </button>
-          );
-        })}
+                {link.label}
+              </button>
+            );
+          })}
+        </div>
 
         <div
+          className="help-box"
           style={{
             marginTop: "35px",
             padding: "15px 12px",
@@ -191,8 +266,8 @@ const VolunteerProfile = () => {
         </div>
       </aside>
 
-
       <main
+        className="volunteer-profile-main"
         style={{
           flex: 1,
           minWidth: 0,
@@ -200,7 +275,6 @@ const VolunteerProfile = () => {
           boxSizing: "border-box",
         }}
       >
-
         <div
           style={{
             color: "#8653bd",
@@ -231,6 +305,7 @@ const VolunteerProfile = () => {
         </p>
 
         <section
+          className="volunteer-profile-form"
           style={{
             background: "#ffffff",
             border: "1px solid #eadcff",
@@ -321,6 +396,7 @@ const VolunteerProfile = () => {
             </div>
 
             <button
+              className="volunteer-profile-save"
               type="submit"
               style={{
                 background: "#8653bd",
@@ -338,6 +414,7 @@ const VolunteerProfile = () => {
 
             {saved && (
               <p
+                role="status"
                 style={{
                   color: "#39835b",
                   fontSize: "14px",

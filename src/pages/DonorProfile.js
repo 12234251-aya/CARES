@@ -49,15 +49,81 @@ const DonorProfile = () => {
 
   return (
     <div
+      className="donor-profile-page"
       style={{
-        minHeight: "calc(100vh -180px)",
+        minHeight: "calc(100vh - 180px)",
         display: "flex",
         background: "#f8f3ff",
         fontFamily: "Arial, sans-serif",
         color: "#302044",
       }}
     >
+      <style>{`
+        @media (max-width: 720px) {
+          .donor-profile-page {
+            flex-direction: column !important;
+            width: 100%;
+          }
+
+          .donor-profile-sidebar {
+            width: 100% !important;
+            min-width: 0 !important;
+            border-right: none !important;
+            border-bottom: 1px solid #eadcff;
+            padding: 20px 16px !important;
+          }
+
+          .donor-profile-sidebar > button {
+            width: calc(50% - 5px) !important;
+            display: inline-flex !important;
+            vertical-align: top;
+            margin-right: 5px;
+            box-sizing: border-box;
+            font-size: 13px !important;
+            padding: 12px 9px !important;
+          }
+
+          .donor-profile-sidebar > button:nth-of-type(even) {
+            margin-right: 0;
+          }
+
+          .donor-profile-sidebar .donor-profile-support {
+            margin-top: 18px !important;
+          }
+
+          .donor-profile-main {
+            width: 100%;
+            padding: 25px 18px !important;
+          }
+
+          .donor-profile-main h1 {
+            font-size: 25px !important;
+          }
+
+          .donor-profile-card {
+            padding: 20px !important;
+          }
+        }
+
+        @media (max-width: 380px) {
+          .donor-profile-sidebar > button {
+            font-size: 12px !important;
+            gap: 7px !important;
+            padding: 11px 7px !important;
+          }
+
+          .donor-profile-main {
+            padding: 22px 13px !important;
+          }
+
+          .donor-profile-card {
+            padding: 16px !important;
+          }
+        }
+      `}</style>
+
       <aside
+        className="donor-profile-sidebar"
         style={{
           width: "245px",
           minWidth: "215px",
@@ -142,6 +208,7 @@ const DonorProfile = () => {
         })}
 
         <div
+          className="donor-profile-support"
           style={{
             marginTop: "35px",
             padding: "15px 12px",
@@ -161,6 +228,7 @@ const DonorProfile = () => {
       </aside>
 
       <main
+        className="donor-profile-main"
         style={{
           flex: 1,
           minWidth: 0,
@@ -197,6 +265,7 @@ const DonorProfile = () => {
         </p>
 
         <section
+          className="donor-profile-card"
           style={{
             background: "#ffffff",
             border: "1px solid #eadcff",

@@ -22,18 +22,16 @@ const VolunteerServiceArea = () => {
     { label: "Profile", icon: "○", path: "/VolunteerProfile" },
   ];
 
-  
-const areas = [
-  "Beirut",
-  "Mount Lebanon",
-  "Tripoli",
-  "Akkar",
-  "Bekaa",
-  "Zahle",
-  "South Lebanon",
-  "Saida",
-];
-
+  const areas = [
+    "Beirut",
+    "Mount Lebanon",
+    "Tripoli",
+    "Akkar",
+    "Bekaa",
+    "Zahle",
+    "South Lebanon",
+    "Saida",
+  ];
 
   const updateDestination = (area, checked) => {
     setService((previous) => ({
@@ -59,6 +57,7 @@ const areas = [
 
   return (
     <div
+      className="volunteer-service-page"
       style={{
         minHeight: "100vh",
         display: "flex",
@@ -67,8 +66,98 @@ const areas = [
         color: "#30243d",
       }}
     >
-      
+      <style>{`
+        @media (max-width: 720px) {
+          .volunteer-service-page {
+            flex-direction: column !important;
+          }
+
+          .volunteer-service-sidebar {
+            width: 100% !important;
+            min-width: 0 !important;
+            border-right: none !important;
+            border-bottom: 1px solid #eadcff !important;
+            padding: 20px 16px !important;
+          }
+
+          .volunteer-service-sidebar .sidebar-links {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 7px;
+          }
+
+          .volunteer-service-sidebar .sidebar-link {
+            width: 100%;
+            margin-bottom: 0 !important;
+            box-sizing: border-box;
+            font-size: 13px !important;
+            padding: 11px 8px !important;
+            gap: 7px !important;
+          }
+
+          .volunteer-service-sidebar .help-box {
+            margin-top: 20px !important;
+          }
+
+          .volunteer-service-main {
+            width: 100%;
+            padding: 22px 16px !important;
+          }
+
+          .volunteer-service-form {
+            padding: 20px !important;
+          }
+
+          .volunteer-service-destinations {
+            grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+            gap: 10px !important;
+          }
+
+          .volunteer-service-destinations label {
+            min-width: 0;
+            box-sizing: border-box;
+            padding: 11px !important;
+            font-size: 13px !important;
+          }
+
+          .volunteer-service-save {
+            width: 100%;
+          }
+        }
+
+        @media (max-width: 420px) {
+          .volunteer-service-sidebar .sidebar-links {
+            grid-template-columns: 1fr;
+          }
+
+          .volunteer-service-sidebar .sidebar-link {
+            font-size: 14px !important;
+          }
+
+          .volunteer-service-main {
+            padding: 20px 12px !important;
+          }
+
+          .volunteer-service-main h1 {
+            font-size: 25px !important;
+          }
+
+          .volunteer-service-form {
+            padding: 16px !important;
+          }
+
+          .volunteer-service-destinations {
+            grid-template-columns: 1fr !important;
+          }
+
+          .volunteer-service-destinations label {
+            font-size: 14px !important;
+          }
+        }
+      `}</style>
+
       <aside
+        className="volunteer-service-sidebar"
         style={{
           width: "245px",
           minWidth: "215px",
@@ -119,41 +208,45 @@ const areas = [
           MENU
         </p>
 
-        {sidebarLinks.map((link) => {
-          const active = location.pathname === link.path;
+        <div className="sidebar-links">
+          {sidebarLinks.map((link) => {
+            const active = location.pathname === link.path;
 
-          return (
-            <button
-              key={link.path}
-              type="button"
-              onClick={() => navigate(link.path)}
-              style={{
-                width: "100%",
-                display: "flex",
-                alignItems: "center",
-                gap: "12px",
-                padding: "13px 12px",
-                marginBottom: "7px",
-                border: "none",
-                borderRadius: "10px",
-                textAlign: "left",
-                fontSize: "14px",
-                fontWeight: active ? "bold" : "normal",
-                color: active ? "#ffffff" : "#655474",
-                background: active ? "#8653bd" : "transparent",
-                cursor: "pointer",
-              }}
-            >
-              <span style={{ fontSize: "19px", width: "22px" }}>
-                {link.icon}
-              </span>
+            return (
+              <button
+                key={link.path}
+                type="button"
+                className="sidebar-link"
+                onClick={() => navigate(link.path)}
+                style={{
+                  width: "100%",
+                  display: "flex",
+                  alignItems: "center",
+                  gap: "12px",
+                  padding: "13px 12px",
+                  marginBottom: "7px",
+                  border: "none",
+                  borderRadius: "10px",
+                  textAlign: "left",
+                  fontSize: "14px",
+                  fontWeight: active ? "bold" : "normal",
+                  color: active ? "#ffffff" : "#655474",
+                  background: active ? "#8653bd" : "transparent",
+                  cursor: "pointer",
+                }}
+              >
+                <span style={{ fontSize: "19px", width: "22px" }}>
+                  {link.icon}
+                </span>
 
-              {link.label}
-            </button>
-          );
-        })}
+                {link.label}
+              </button>
+            );
+          })}
+        </div>
 
         <div
+          className="help-box"
           style={{
             marginTop: "35px",
             padding: "15px 12px",
@@ -172,8 +265,8 @@ const areas = [
         </div>
       </aside>
 
-
       <main
+        className="volunteer-service-main"
         style={{
           flex: 1,
           minWidth: 0,
@@ -181,7 +274,6 @@ const areas = [
           boxSizing: "border-box",
         }}
       >
-
         <div
           style={{
             color: "#8653bd",
@@ -195,8 +287,8 @@ const areas = [
         </div>
 
         <h1 style={{ fontSize: "29px", margin: "0 0 10px" }}>
-            <span> My </span>
-            <span style={{ color: "#8653bd" }}>Service Area</span>
+          <span> My </span>
+          <span style={{ color: "#8653bd" }}>Service Area</span>
         </h1>
 
         <p
@@ -212,6 +304,7 @@ const areas = [
         </p>
 
         <section
+          className="volunteer-service-form"
           style={{
             background: "#ffffff",
             border: "1px solid #eadcff",
@@ -297,51 +390,51 @@ const areas = [
               </p>
 
               <div
+                className="volunteer-service-destinations"
                 style={{
                   display: "grid",
                   gridTemplateColumns: "repeat(auto-fit, minmax(180px, 1fr))",
                   gap: "12px",
                 }}
               >
-                {areas
-                  .filter((area) => area !== service.from)
-                  .map((area) => {
-                    const checked = service.destinations.includes(area);
+                {areas.map((area) => {
+                  const checked = service.destinations.includes(area);
 
-                    return (
-                      <label
-                        key={area}
+                  return (
+                    <label
+                      key={area}
+                      style={{
+                        display: "flex",
+                        alignItems: "center",
+                        gap: "10px",
+                        padding: "13px",
+                        border: checked
+                          ? "1px solid #b99cdd"
+                          : "1px solid #eadcff",
+                        borderRadius: "9px",
+                        background: checked ? "#f4edff" : "#ffffff",
+                        color: "#59476c",
+                        fontSize: "14px",
+                        cursor: "pointer",
+                      }}
+                    >
+                      <input
+                        type="checkbox"
+                        checked={checked}
+                        onChange={(event) =>
+                          updateDestination(area, event.target.checked)
+                        }
                         style={{
-                          display: "flex",
-                          alignItems: "center",
-                          gap: "10px",
-                          padding: "13px",
-                          border: checked
-                            ? "1px solid #b99cdd"
-                            : "1px solid #eadcff",
-                          borderRadius: "9px",
-                          background: checked ? "#f4edff" : "#ffffff",
-                          color: "#59476c",
-                          fontSize: "14px",
-                          cursor: "pointer",
+                          accentColor: "#8653bd",
+                          width: "16px",
+                          height: "16px",
+                          flexShrink: 0,
                         }}
-                      >
-                        <input
-                          type="checkbox"
-                          checked={checked}
-                          onChange={(event) =>
-                            updateDestination(area, event.target.checked)
-                          }
-                          style={{
-                            accentColor: "#8653bd",
-                            width: "16px",
-                            height: "16px",
-                          }}
-                        />
-                        {area}
-                      </label>
-                    );
-                  })}
+                      />
+                      {area}
+                    </label>
+                  );
+                })}
               </div>
             </div>
 
@@ -378,6 +471,7 @@ const areas = [
             </div>
 
             <button
+              className="volunteer-service-save"
               type="submit"
               style={{
                 background: "#8653bd",

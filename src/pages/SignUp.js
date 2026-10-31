@@ -38,12 +38,22 @@ const SignUp = () => {
             return;
         }
 
-        
+        // Complete registration
         sessionStorage.setItem("caresLoggedIn", "true");
-        sessionStorage.removeItem("caresRole");
 
-        navigate("/ChooseRole");
+        // Get the role selected before registration
+        const selectedRole = sessionStorage.getItem("caresRole");
 
+        // Navigate according to the selected role
+        if (selectedRole === "Donor") {
+            navigate("/DonorDashboard");
+        } else if (selectedRole === "Beneficiary") {
+            navigate("/BeneficiaryDashboard");
+        } else if (selectedRole === "Volunteer") {
+            navigate("/VolunteerDashboard");
+        } else {
+            navigate("/ChooseRole");
+        }
     };
 
     return (
